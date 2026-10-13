@@ -158,23 +158,39 @@ def standardize_columns(raw: pd.DataFrame) -> pd.DataFrame:
 
 
 def read_catalog_bytes(data: bytes) -> pd.DataFrame:
-    """Lee un CSV subido por el usuario probando codificaciones y separadores."""
-    for enc in ("utf-8-sig", "latin-1"):
+    """Lee un CSV o CSV.GZ subido por el usuario probando codificaciones y separadores."""
+    # Detectar si los bytes corresponden al magic header de gzip (0x1f 0x8b)
+    is_gzip = data[:2] == b"\x1f\x8b"
+    for enc in ("utf-8-sig", "latin-1", "utf-8"):
         try:
-            return pd.read_csv(io.BytesIO(data), sep=None, engine="python", encoding=enc)
-        except (UnicodeDecodeError, pd.errors.ParserError):
+            bio = io.BytesIO(data)
+            return pd.read_csv(
+                bio,
+                sep=None,
+                engine="python",
+                encoding=enc,
+                compression="gzip" if is_gzip else "infer",
+            )
+        except (UnicodeDecodeError, pd.errors.ParserError, Exception):
             continue
-    raise ValueError("No fue posible leer el archivo CSV.")
+    raise ValueError("No fue posible leer el archivo CSV/CSV.GZ.")
 
 
 def read_catalog_path(path: str) -> pd.DataFrame:
-    """Lee un CSV desde ruta en disco."""
-    for enc in ("utf-8-sig", "latin-1"):
+    """Lee un CSV o CSV.GZ desde ruta en disco probando codificaciones."""
+    is_gz = str(path).lower().endswith(".gz")
+    for enc in ("utf-8-sig", "latin-1", "utf-8"):
         try:
-            return pd.read_csv(path, sep=None, engine="python", encoding=enc)
-        except (UnicodeDecodeError, pd.errors.ParserError):
+            return pd.read_csv(
+                path,
+                sep=None,
+                engine="python",
+                encoding=enc,
+                compression="gzip" if is_gz else "infer",
+            )
+        except (UnicodeDecodeError, pd.errors.ParserError, Exception):
             continue
-    raise ValueError("No fue posible leer el archivo CSV.")
+    raise ValueError(f"No fue posible leer el archivo: {path}")
 
 
 # --------------------------------------------------------------------------- #

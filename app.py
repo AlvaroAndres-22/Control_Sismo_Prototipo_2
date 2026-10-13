@@ -99,8 +99,11 @@ PALETTE = px.colors.qualitative.Plotly + px.colors.qualitative.D3
 def find_default_catalog() -> str | None:
     current_dir = Path(__file__).resolve().parent
     candidates = [
+        current_dir / "Catalogo_Sismico.csv.gz",
         current_dir / "Catalogo_Sismico.csv",
+        current_dir.parent / "Catalogo_Sismico.csv.gz",
         current_dir.parent / "Catalogo_Sismico.csv",
+        Path.home() / "Downloads" / "Catalogo_Sismico.csv.gz",
         Path.home() / "Downloads" / "Catalogo_Sismico.csv",
         Path(r"c:\Users\valanar\Downloads\Catalogo_Sismico.csv"),
     ]
@@ -180,7 +183,8 @@ st.sidebar.markdown("---")
 st.sidebar.subheader("📂 Fuente de Datos")
 
 default_available = DEFAULT_CSV is not None
-default_label = "Catálogo del repositorio (Catalogo_Sismico.csv)" if default_available else "Catálogo no encontrado localmente"
+catalog_name = Path(DEFAULT_CSV).name if default_available else "Catalogo_Sismico"
+default_label = f"Catálogo del repositorio ({catalog_name})" if default_available else "Catálogo no encontrado localmente"
 
 source = st.sidebar.radio(
     "Selecciona la fuente",
@@ -189,7 +193,7 @@ source = st.sidebar.radio(
 )
 upload = None
 if source == "Subir CSV personalizado" or not default_available:
-    upload = st.sidebar.file_uploader("Sube tu Catálogo SGC (.csv)", type=["csv"])
+    upload = st.sidebar.file_uploader("Sube tu Catálogo SGC (.csv / .gz)", type=["csv", "gz", "zip"])
 
 data = None
 report = {}

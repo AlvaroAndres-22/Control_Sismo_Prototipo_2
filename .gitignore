@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# Ignorar el CSV gigante sin comprimir (usamos Catalogo_Sismico.csv.gz que pesa 13 MB)
+Catalogo_Sismico.csv
