@@ -874,20 +874,4 @@ with tab_dict:
     st.markdown("---")
     st.subheader("🎯 Guía de Pitch (10 minutos)")
     st.markdown("""
-    ### Estructura sugerida para la presentación de la hackathon:
-
-    | Minuto | Sección | Contenido |
-    |--------|---------|-----------|
-    | 0-1 | 🎯 Hook | Dato impactante: magnitud máxima, total de sismos, zonas críticas |
-    | 1-3 | 📊 Problema | Contexto sismológico colombiano, necesidad de monitoreo inteligente |
-    | 3-5 | 🤖 Solución | Clustering, clasificación Leve/Medio/Grave, variables de modelado |
-    | 5-7 | 🗺️ Demo | Mapa interactivo, búsqueda de lugares, simulador de impacto |
-    | 7-8 | 📈 Predicción | Tendencias, tasa Poisson, proyección a 30 días |
-    | 8-9 | ⚔️ Comparador | Comparación territorial A vs B, métricas lado a lado |
-    | 9-10 | 🏁 Cierre | Impacto social, escalabilidad, próximos pasos |
-
-    **Recomendaciones:**
-    - Enfócate en el mapa interactivo como wow-factor visual.
-    - Usa el simulador en vivo para generar engagement del jurado.
-    - El reporte ejecutivo demuestra utilidad real para gestión del riesgo.
-    """)
+    
