@@ -266,7 +266,7 @@ dfr, risk = assign_risk(df, labels)
 # --------------------------------------------------------------------------- #
 # PESTAÑAS PRINCIPALES
 # --------------------------------------------------------------------------- #
-tab_home, tab_map, tab_eda, tab_ml, tab_pred, tab_sim, tab_comp, tab_report, tab_dict = st.tabs([
+tab_home, tab_map, tab_eda, tab_ml, tab_pred, tab_sim, tab_comp, tab_report = st.tabs([
     "🏠 Inicio",
     "🗺️ Mapa Interactivo",
     "📊 Análisis Exploratorio",
@@ -274,8 +274,7 @@ tab_home, tab_map, tab_eda, tab_ml, tab_pred, tab_sim, tab_comp, tab_report, tab
     "📈 Predicción y Tendencia",
     "💥 Simulador de Impacto",
     "⚔️ Comparador Territorial",
-    "📋 Reporte Ejecutivo",
-    "📖 Diccionario & Export",
+    "📋 Reporte Ejecutivo"
 ])
 
 # ═══════════════════════════════════════════════════════════════════════════ #
@@ -847,10 +846,6 @@ with tab_report:
     st.subheader("Vista Previa del Dataset Procesado")
     st.dataframe(dfr.head(100), use_container_width=True)
 
-
-# ═══════════════════════════════════════════════════════════════════════════ #
-# TAB: DICCIONARIO & EXPORTACIÓN
-# ═══════════════════════════════════════════════════════════════════════════ #
 
 
 
