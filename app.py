@@ -851,46 +851,6 @@ with tab_report:
 # ═══════════════════════════════════════════════════════════════════════════ #
 # TAB: DICCIONARIO & EXPORTACIÓN
 # ═══════════════════════════════════════════════════════════════════════════ #
-with tab_dict:
-    st.header("📖 Diccionario de Datos")
-    st.dataframe(dictionary_frame(), hide_index=True, use_container_width=True)
-    st.download_button(
-        "⬇️ Diccionario (CSV)",
-        dictionary_frame().to_csv(index=False).encode("utf-8-sig"),
-        "diccionario_datos.csv",
-        "text/csv",
-    )
-
-    st.markdown("---")
-    st.header("📥 Dataset Preprocesado Completo")
-    st.dataframe(dfr.head(200), use_container_width=True)
-    st.download_button(
-        "⬇️ Dataset + Clúster (CSV)",
-        dfr.to_csv(index=False).encode("utf-8-sig"),
-        "sismos_preprocesado_cluster.csv",
-        "text/csv",
-    )
-    
-    st.markdown("---")
-    st.subheader("🎯 Guía de Pitch (10 minutos)")
-    st.markdown("""
-    ### Estructura sugerida para la presentación de la hackathon:
-
-    | Minuto | Sección | Contenido |
-    |--------|---------|-----------|
-    | 0-1 | 🎯 Hook | Dato impactante: magnitud máxima, total de sismos, zonas críticas |
-    | 1-3 | 📊 Problema | Contexto sismológico colombiano, necesidad de monitoreo inteligente |
-    | 3-5 | 🤖 Solución | Clustering, clasificación Leve/Medio/Grave, variables de modelado |
-    | 5-7 | 🗺️ Demo | Mapa interactivo, búsqueda de lugares, simulador de impacto |
-    | 7-8 | 📈 Predicción | Tendencias, tasa Poisson, proyección a 30 días |
-    | 8-9 | ⚔️ Comparador | Comparación territorial A vs B, métricas lado a lado |
-    | 9-10 | 🏁 Cierre | Impacto social, escalabilidad, próximos pasos |
-
-    **Recomendaciones:**
-    - Enfócate en el mapa interactivo como wow-factor visual.
-    - Usa el simulador en vivo para generar engagement del jurado.
-    - El reporte ejecutivo demuestra utilidad real para gestión del riesgo.
-    """)
 
 
 
