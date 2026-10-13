@@ -871,7 +871,5 @@ with tab_dict:
         "text/csv",
     )
 
-    st.markdown("---")
-    st.subheader("🎯 Guía de Pitch (10 minutos)")
-    st.markdown("""
+
     
